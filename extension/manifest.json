@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "German AI Helper",
+  "version": "1.0",
+  "description": "Analyze German articles with AI",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": [
+    "http://localhost:3000/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
