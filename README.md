@@ -39,6 +39,7 @@ Verb: verschärft – verschärfte – hat verschärft
 ## 🏗 Architecture
 
 Chrome Extension → Local Node.js Server → OpenAI API
+
 ```mermaid
 flowchart LR
     A[Web Content] --> B[Chrome Extension UI]
@@ -48,6 +49,7 @@ flowchart LR
     E --> F[Structured Output (JSON)]
     F --> G[UI Rendering (Vocabulary Display)]
 ```
+
 ---
 
 ## ⚙️ Tech Stack
