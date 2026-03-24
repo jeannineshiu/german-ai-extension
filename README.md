@@ -42,12 +42,12 @@ Chrome Extension → Local Node.js Server → OpenAI API
 
 ```mermaid
 flowchart LR
-    A[Web Content] --> B[Chrome Extension UI]
-    B --> C[Frontend Logic (popup.js)]
-    C --> D[Backend Service (Express.js)]
-    D --> E[LLM API (OpenAI)]
-    E --> F[Structured Output (JSON)]
-    F --> G[UI Rendering (Vocabulary Display)]
+    A["Web Content (German Text)"] --> B["Chrome Extension (UI Layer)"]
+    B --> C["Frontend Logic"]
+    C --> D["Backend Service (Express API)"]
+    D --> E["LLM Processing (OpenAI API)"]
+    E --> F["Structured Response (JSON Vocabulary)"]
+    F --> G["Frontend Rendering (Learning Interface)"]
 ```
 
 ---
