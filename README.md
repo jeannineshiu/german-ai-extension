@@ -52,6 +52,16 @@ flowchart LR
 
 ---
 
+
+## Architecture Design
+This project follows a simple client-server architecture:
+- Frontend: Chrome Extension (user interaction)
+- Backend: Express API (request handling)
+- AI Layer: OpenAI API (language processing)
+- Output: Structured JSON for consistent rendering
+
+---
+
 ## ⚙️ Tech Stack
 
 * **Chrome Extension (Manifest v3)**
