@@ -39,23 +39,15 @@ Verb: verschärft – verschärfte – hat verschärft
 ## 🏗 Architecture
 
 Chrome Extension → Local Node.js Server → OpenAI API
-
+```mermaid
+flowchart LR
+    A[Web Content] --> B[Chrome Extension UI]
+    B --> C[Frontend Logic (popup.js)]
+    C --> D[Backend Service (Express.js)]
+    D --> E[LLM API (OpenAI)]
+    E --> F[Structured Output (JSON)]
+    F --> G[UI Rendering (Vocabulary Display)]
 ```
-Browser Article
-        ↓
-Chrome Extension
-        ↓
-popup.js
-        ↓
-Local Express Server (localhost:3000)
-        ↓
-OpenAI API
-        ↓
-Structured JSON Vocabulary
-        ↓
-Rendered in Extension UI
-```
-
 ---
 
 ## ⚙️ Tech Stack
