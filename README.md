@@ -1,5 +1,8 @@
 # German AI Vocabulary Extractor 🇩🇪🤖
 
+## 🧩 Demo
+<img src="image.png" width="800"/>
+
 A Chrome extension that analyzes German news articles and extracts useful **B2-level vocabulary** using the OpenAI API.
 
 This tool helps German learners quickly identify important vocabulary from real-world articles, including noun articles, plural forms, verb conjugations, and example sentences.
