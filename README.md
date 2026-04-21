@@ -1,10 +1,13 @@
 # German AI Vocabulary Extractor 🇩🇪🤖
 
-A Chrome extension that analyzes German news articles and extracts useful **B2-level vocabulary** using the OpenAI API.
+A **web app** that analyzes German news articles and extracts useful **B2-level vocabulary** using the OpenAI API.
 
-This tool helps German learners quickly identify important vocabulary from real-world articles, including noun articles, plural forms, verb conjugations, and example sentences.
+No installation required — open the link on any device and start learning.
+
+🔗 **Live App: [german-ai-extension.vercel.app](https://german-ai-extension.vercel.app)**
 
 ---
+
 ## 🧩 Demo
 <img src="image.png" width="1000"/>
 
@@ -24,6 +27,8 @@ This tool helps German learners quickly identify important vocabulary from real-
 * Provides **Traditional Chinese explanations**
 * Includes **example sentences with Chinese translations**
 * Designed for **news, politics, and economics vocabulary**
+* Works on **mobile and desktop** — no extension needed
+* Your OpenAI API key is stored **locally in your browser only**
 
 ---
 
@@ -42,38 +47,25 @@ Verb: verschärft – verschärfte – hat verschärft
 
 ## 🏗 Architecture
 
-Chrome Extension → Local Node.js Server → OpenAI API
-
 ```mermaid
 flowchart LR
-    A["Web Content (German Text)"] --> B["Chrome Extension (UI Layer)"]
-    B --> C["Frontend Logic"]
-    C --> D["Backend Service (Express API)"]
-    D --> E["LLM Processing (OpenAI API)"]
-    E --> F["Structured Response (JSON Vocabulary)"]
-    F --> G["Frontend Rendering (Learning Interface)"]
+    A["User (any device)"] --> B["Next.js Frontend (Vercel)"]
+    B --> C["Express Backend (Railway)"]
+    C --> D["OpenAI API"]
+    D --> E["Structured JSON Vocabulary"]
+    E --> B
 ```
-
----
-
-
-## Architecture Design
-This project follows a simple client-server architecture:
-- Frontend: Chrome Extension (user interaction)
-- Backend: Express API (request handling)
-- AI Layer: OpenAI API (language processing)
-- Output: Structured JSON for consistent rendering
 
 ---
 
 ## ⚙️ Tech Stack
 
-* **Chrome Extension (Manifest v3)**
-* **Node.js**
-* **Express**
-* **OpenAI API**
-* **Prompt Engineering**
-* **JavaScript**
+| Layer | Technology |
+|-------|-----------|
+| Frontend | Next.js + Tailwind CSS → Vercel |
+| Backend | Node.js + Express → Railway |
+| AI | OpenAI API (gpt-4.1-mini) |
+| Language | TypeScript / JavaScript |
 
 ---
 
@@ -82,12 +74,14 @@ This project follows a simple client-server architecture:
 ```
 german-ai-extension
 │
-├─ extension
-│   ├─ manifest.json
-│   ├─ popup.html
-│   └─ popup.js
+├─ frontend              # Next.js web app (deployed to Vercel)
+│   ├─ app
+│   │   ├─ page.tsx
+│   │   ├─ layout.tsx
+│   │   └─ globals.css
+│   └─ package.json
 │
-├─ server
+├─ server                # Express API (deployed to Railway)
 │   ├─ server.js
 │   ├─ package.json
 │   └─ .env
@@ -97,66 +91,52 @@ german-ai-extension
 
 ---
 
-## 🚀 Setup
+## 🚀 Local Development
 
 ### 1. Clone the repository
 
-```
-git clone https://github.com/your-username/german-ai-extension.git
+```bash
+git clone https://github.com/jeannineshiu/german-ai-extension.git
 cd german-ai-extension
 ```
 
-### 2. Install server dependencies
+### 2. Start the backend
 
-```
+```bash
 cd server
 npm install
+node server.js
 ```
 
-### 3. Add your OpenAI API key
+Server runs at `http://localhost:3000`
 
-Create a `.env` file:
+### 3. Start the frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+App runs at `http://localhost:3001`
+
+### 4. Set frontend env variable
+
+Create `frontend/.env.local`:
 
 ```
-OPENAI_API_KEY=your_api_key_here
+NEXT_PUBLIC_API_URL=http://localhost:3000
 ```
 
 ---
 
-### 4. Start the server
+## 📚 How to Use
 
-```
-npx nodemon server.js
-```
-
-Server will run at:
-
-```
-http://localhost:3000
-```
-
----
-
-### 5. Load the Chrome extension
-
-Open:
-
-```
-chrome://extensions
-```
-
-Enable **Developer Mode**.
-
-Click **Load unpacked** and select the `extension` folder.
-
----
-
-## 📚 Use Case
-
-1. Open a German news article
-2. Click the extension
-3. Press **Analyze**
-4. Instantly see important B2 vocabulary extracted from the article
+1. Open [german-ai-extension.vercel.app](https://german-ai-extension.vercel.app)
+2. Enter your **OpenAI API key** (saved in your browser's localStorage)
+3. Paste a German news article
+4. Press **分析單字**
+5. Instantly see 10 B2-level vocabulary words extracted from the article
 
 ---
 
@@ -177,10 +157,8 @@ It bridges the gap between **reading real German content and structured vocabula
 
 ## 📌 Future Improvements
 
-Possible future features:
-
 * CEFR level detection (B2 / C1)
 * Anki flashcard export
-* Better article content extraction
+* Direct URL input to auto-fetch article content
 * Vocabulary frequency ranking
-* Support for multiple languages
+* Save vocabulary history
