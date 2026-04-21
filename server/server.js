@@ -9,10 +9,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-});
-
 // health check route
 app.get("/", (req, res) => {
   res.send("AI server is running");
@@ -24,6 +20,12 @@ app.post("/analyze", async (req, res) => {
 
   try {
 
+    const apiKey = req.body.apiKey || process.env.OPENAI_API_KEY;
+    if (!apiKey) {
+      return res.status(400).json({ error: "No API key provided" });
+    }
+
+    const client = new OpenAI({ apiKey });
     const article = req.body.article.slice(0, 8000);
 
     console.log("Article length:", article.length);
