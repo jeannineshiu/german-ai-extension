@@ -9,7 +9,7 @@ No installation required — open the link on any device and start learning.
 ---
 
 ## 🧩 Demo
-<img src="image.png" width="1000"/>
+<img src="screenshot.png" width="1000"/>
 
 ---
 
